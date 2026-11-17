@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="176" viewBox="0 0 720 176" role="img" aria-labelledby="title desc">
+  <title id="title">Aether</title>
+  <desc id="desc">Aether – deine lokale Terminal-Startseite.</desc>
+  <rect width="720" height="176" fill="#0A0D0C"/>
+  <defs>
+    <linearGradient id="violet" x1="18" y1="20" x2="145" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F074FF"/><stop offset=".52" stop-color="#A855F7"/><stop offset="1" stop-color="#7047FF"/>
+    </linearGradient>
+    <linearGradient id="aura" x1="26" y1="88" x2="151" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A855F7" stop-opacity="0"/><stop offset=".5" stop-color="#C084FC"/><stop offset="1" stop-color="#7047FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 14)">
+    <rect x="2" y="2" width="144" height="144" rx="20" fill="#0F1612" stroke="#354B33" stroke-width="2"/>
+    <path d="M20 81C31 37 90 19 131 49c22 16 22 50 1 67-17 14-46 15-67 4" fill="none" stroke="url(#aura)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M27 55C42 29 81 19 111 31" fill="none" stroke="url(#violet)" stroke-width="3" stroke-linecap="round"/>
+    <path d="m39 111 34-77 34 77M54 79h38" fill="none" stroke="#D9E3DC" stroke-width="8" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <path d="m92 103 16 9 18-13" fill="none" stroke="url(#violet)" stroke-width="7" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <circle cx="119" cy="39" r="4" fill="#F074FF"/><circle cx="31" cy="111" r="3" fill="#BAF58A"/>
+  </g>
+  <text x="184" y="91" fill="#D9E3DC" font-family="JetBrains Mono,Consolas,monospace" font-size="58" font-weight="700" letter-spacing="-4">AETHER</text>
+  <text x="188" y="122" fill="#A8B9AA" font-family="JetBrains Mono,Consolas,monospace" font-size="13" font-weight="500" letter-spacing="2">TERMINAL STARTPAGE</text>
+  <path d="M188 145h59" stroke="#A855F7" stroke-width="3"/><path d="M255 145h14" stroke="#BAF58A" stroke-width="3"/>
+</svg>

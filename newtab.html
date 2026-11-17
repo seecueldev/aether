@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><title>Aether</title><link rel="icon" type="image/svg+xml" href="icons/favicon.svg"><link rel="stylesheet" href="css/style.css"><script type="module" src="js/start.js"></script></head>
+<body class="start-page"><canvas id="matrix-bg" aria-hidden="true" hidden></canvas><div id="backdrop-fade" aria-hidden="true"></div><a class="skip-link" href="#q" data-i18n="skip">Zum Suchfeld springen</a><main class="start-layout">
+  <aside class="side-panel"><div class="clock-block"><small class="eyebrow">LOCAL TIME / <span id="zone"></span></small><div id="clock" aria-label="Uhrzeit">--:--</div><small id="date"></small><p id="greeting"></p><p id="weather" class="weather" hidden></p></div>
+    <div class="bookmark-panel"><div class="divider"></div><div class="bookmark-heading"><h2>~/lesezeichen</h2><small id="count"></small></div><nav id="bookmarks" aria-label="Lesezeichen"></nav><button id="more" class="more-button" hidden type="button"></button></div>
+  </aside>
+  <section class="search-panel" aria-label="Suche"><small class="accent eyebrow" data-i18n="kicker">BEREIT FÜR DEINEN NÄCHSTEN SCHRITT</small><h1 data-i18n="headline">Wohin als Nächstes?</h1>
+    <form id="search" autocomplete="off"><label for="q">&gt;</label><input id="q" autocomplete="off" spellcheck="false" aria-label="Suche oder Befehl" placeholder="Web durchsuchen oder Befehl eingeben"><button aria-label="Öffnen" type="submit">↵</button></form><div id="results" role="listbox" aria-label="Vorschläge"></div>
+    <div class="modes"><button data-mode="web" type="button"><kbd>/</kbd> Websuche</button><button data-mode="cmd" type="button"><kbd>&gt;</kbd> Befehle</button><button data-mode="bm" type="button"><kbd>@</kbd> Lesezeichen</button></div><small class="keys">TAB wechseln · ENTER öffnen · ESC zurück</small><p id="message" role="status" aria-live="polite"></p>
+  </section>
+</main><footer><span class="accent"><i class="status-dot"></i> LOKALE SITZUNG</span><span>Dein Tab. Dein Ausgangspunkt.</span><span>AETHER / V.01</span><a class="settings-link" href="settings.html">⚙ Einstellungen</a></footer></body></html>

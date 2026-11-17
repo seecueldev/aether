@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Aether",
+  "version": "1.1.0",
+  "description": "Eine lokale, anpassbare Terminal-Startseite für deinen Browser.",
+  "permissions": ["bookmarks", "storage", "search", "favicon"],
+  "host_permissions": ["https://api.open-meteo.com/*"],
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "action": {
+    "default_title": "Aether öffnen",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png"
+    }
+  },
+  "background": { "service_worker": "js/background.js" },
+  "chrome_url_overrides": { "newtab": "newtab.html" },
+  "options_page": "settings.html"
+}

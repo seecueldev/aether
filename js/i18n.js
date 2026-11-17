@@ -1,0 +1,1 @@
+const en={skip:'Skip to search',kicker:'READY FOR YOUR NEXT STEP',headline:'Where to next?'};export function applyLanguage(language){document.documentElement.lang=language==='en'?'en':'de';if(language!=='en')return;document.querySelectorAll('[data-i18n]').forEach(el=>{if(en[el.dataset.i18n])el.textContent=en[el.dataset.i18n]})}

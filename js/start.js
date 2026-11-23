@@ -275,16 +275,26 @@ function drawBookmarks() {
 
 function paintClock() {
   const now = new Date();
+  const timezone = settings.timezone && settings.timezone !== 'local' ? settings.timezone : undefined;
   const options = { hour: '2-digit', minute: '2-digit', hour12: settings.hour12 };
+  if (timezone) options.timeZone = timezone;
   if (settings.seconds) options.second = '2-digit';
   $('#clock').textContent = now.toLocaleTimeString(settings.language === 'en' ? 'en-GB' : 'de-DE', options);
   $('#clock').hidden = !settings.showClock;
-  const date = settings.dateFormat === 'short' ? now.toLocaleDateString('de-DE')
-    : settings.dateFormat === 'iso' ? now.toISOString().slice(0, 10)
-      : now.toLocaleDateString(settings.language === 'en' ? 'en-GB' : 'de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+  const locale = settings.language === 'en' ? 'en-GB' : 'de-DE';
+  const dateOptions = timezone ? { timeZone: timezone } : {};
+  const date = settings.dateFormat === 'short'
+    ? now.toLocaleDateString(locale, { ...dateOptions, year: 'numeric', month: '2-digit', day: '2-digit' })
+    : settings.dateFormat === 'iso'
+      ? (() => { const parts = new Intl.DateTimeFormat('en-CA', { ...dateOptions, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(now); const part = type => parts.find(item => item.type === type)?.value; return `${part('year')}-${part('month')}-${part('day')}`; })()
+      : now.toLocaleDateString(locale, { ...dateOptions, weekday: 'long', day: 'numeric', month: 'long' });
   $('#date').textContent = date.toUpperCase();
-  $('#zone').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone.split('/').pop().replaceAll('_', ' ');
+  const zoneName = timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  $('#zone').textContent = zoneName === 'UTC' ? 'UTC' : zoneName.split('/').pop().replaceAll('_', ' ');
   $('#greeting').textContent = settings.greeting;
+  $('#clock-widget').hidden = !settings.widgetClock;
+  $('.bookmark-panel').hidden = !settings.widgetBookmarks;
+  $('.keys').hidden = !settings.keyboardNav;
 }
 
 function setMode(next, focus = true) {
@@ -359,13 +369,13 @@ q.addEventListener('input', () => {
   suggest();
 });
 q.addEventListener('keydown', event => {
-  if (event.key === 'Tab') {
+  if (settings.keyboardNav && event.key === 'Tab') {
     event.preventDefault();
     const modes = ['web', 'cmd', 'bm'];
     setMode(modes[(modes.indexOf(mode) + (event.shiftKey ? 2 : 1)) % 3], false);
-  } else if (event.key === 'ArrowDown' && actions.length) {
+  } else if (settings.keyboardNav && event.key === 'ArrowDown' && actions.length) {
     event.preventDefault(); selected = (selected + 1) % actions.length; paint();
-  } else if (event.key === 'ArrowUp' && actions.length) {
+  } else if (settings.keyboardNav && event.key === 'ArrowUp' && actions.length) {
     event.preventDefault(); selected = (selected - 1 + actions.length) % actions.length; paint();
   } else if (event.key === 'Escape') {
     q.value = ''; setMode('web', false); $('#results').replaceChildren();
@@ -383,6 +393,7 @@ document.addEventListener('keydown', event => {
     $('#more').focus();
     return;
   }
+  if (!settings.keyboardNav) return;
   if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) || event.ctrlKey || event.metaKey || event.altKey) return;
   if (event.key === '/') { event.preventDefault(); setMode('web'); }
   if (event.key === ',') location.href = 'settings.html';
